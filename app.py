@@ -5,7 +5,7 @@ import csv
 import json
 from pyramid.config import Configurator
 
-@view_config(route_name='home', renderer='templates/index.jinja2')
+@view_config(route_name='home', renderer='templates/index.html')
 def home_view(request):
     return {'title':'Benford Law','message':'Details provided in JSON if the law is satisfied. Else, a message is displayed saying the data does not follow Benford\'s Law.'}
 
@@ -25,7 +25,7 @@ def benford(request):
 
             valid,results = benford_fun(data)
 
-            if valid == True:
+            if valid== True:
                 with open("uploads/benford.json", "w") as f:
                     json.dump(results, f)
                     return Response(json.dumps(results))
